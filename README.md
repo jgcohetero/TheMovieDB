@@ -1,5 +1,5 @@
 # The movie DB
-* Esta carpeta contiene el código fuente para THe Movie DB
+* Esta carpeta contiene el código fuente para The Movie DB
 
 # Introduction
 
