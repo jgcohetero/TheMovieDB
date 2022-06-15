@@ -58,4 +58,4 @@ Es decir utilizar las dependencias de ROOM y FLOW:
      ...
    }
 
-* Una ve< llegada a esta parte se puede implementar una serie de clases para procesar la información una vez que la app se encuentre en modo offline.
+* Una vez llegada a esta parte se puede implementar una serie de clases para procesar la información una vez que la app se encuentre en modo offline.
