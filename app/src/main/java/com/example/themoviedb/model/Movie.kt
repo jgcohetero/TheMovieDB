@@ -1,5 +1,6 @@
 package com.example.themoviedb.model
 
+// Modelo de una película
 data class Movie(
     var id: Int,
     var backdrop_path: String,

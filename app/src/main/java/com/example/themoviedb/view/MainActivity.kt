@@ -13,6 +13,8 @@ class MainActivity: AppCompatActivity() {
         val binding = ActivityOptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Pasamos la opción a MovieActivity
+
         binding.buttonPopular.setOnClickListener {
             val intent = Intent(this, MovieActivity::class.java)
             intent.putExtra("option", "popular")

@@ -16,7 +16,7 @@ import retrofit2.Response
 
 class MovieActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
         lateinit var apiservice: MovieService
     }
 
@@ -27,19 +27,32 @@ class MovieActivity : AppCompatActivity() {
         val binding = ActivityMoviesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var option = intent?.extras?.getString("option").toString()
+        // Obtenemos la opción seleccionada por el usuario
+        val option = intent?.extras?.getString("option").toString()
+
+        // Inicializamos el recyclerView
         recyclerView = binding.recyclerViewMovie
         recyclerView.layoutManager = LinearLayoutManager(this)
-        apiservice = RetrofitInstance.getRetrofitInstance().create<MovieService>(MovieService::class.java)
+
+        // Creamos una instancia para las consultas
+        apiservice =
+            RetrofitInstance.getRetrofitInstance().create<MovieService>(MovieService::class.java)
+
+
         getMovies(option)
-        title = option.uppercase()
     }
 
+
     private fun getMovies(option: String) {
+
+        // Llmamos a nuestro método getMovies y le pasamos la opción del usuario
+
         apiservice.getMovies(option).enqueue(
-            object : Callback<ResultMovie>{
+            object : Callback<ResultMovie> {
                 override fun onResponse(call: Call<ResultMovie>, response: Response<ResultMovie>) {
                     val listMovies = response.body()!!.results
+
+                    // Le pasamos información al MovieAdapter
                     recyclerView.adapter = MovieAdapter(listMovies)
                 }
 

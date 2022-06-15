@@ -1,6 +1,7 @@
 package com.example.themoviedb.view
 
 import android.os.Bundle
+import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +27,8 @@ class DetailActivity: AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Recuperamos el id de la película seleccionada
+
         val id = intent?.extras?.getString("id").toString()
 
         recyclerView = binding.recyclerViewVideo
@@ -37,6 +40,7 @@ class DetailActivity: AppCompatActivity() {
     }
 
     private fun getMovieInfo(id: String) {
+        // Obtenemos la información de película y mostramos los datos
         MovieActivity.apiservice.getMovieInfo(id).enqueue(
             object : Callback<Movie> {
                 override fun onResponse(call: Call<Movie>, response: Response<Movie>) {
@@ -53,7 +57,7 @@ class DetailActivity: AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<Movie>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    Toast.makeText(this@DetailActivity, "Error", Toast.LENGTH_LONG).show()
                 }
 
             }
@@ -61,6 +65,7 @@ class DetailActivity: AppCompatActivity() {
     }
 
     private fun getVideoMovie(id: String) {
+        // Obtenemos los videos de la película seleccionada y lo pasamos al VideoAdapter
         MovieActivity.apiservice.getVideo(id).enqueue(
             object : Callback<ResultVideo> {
                 override fun onResponse(call: Call<ResultVideo>, response: Response<ResultVideo>) {
@@ -70,7 +75,7 @@ class DetailActivity: AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<ResultVideo>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    Toast.makeText(this@DetailActivity, "Error", Toast.LENGTH_LONG).show()
                 }
 
 
